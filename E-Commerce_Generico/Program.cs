@@ -1,25 +1,22 @@
-/*using Microsoft.IdentityModel.Tokens;
+global using E_Commerce_Generico.Migrations;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
 using System.Text;
-using CryptoBogaloo.Migraciones;
-using CryptoBogaloo.Services.UserService;
-using CryptoBogaloo.Services;*/
-global using E_Commerce_Generico.Migrations;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// REVISAR PARA SIMPLIFICAR EN EL DBCONTEXT
 /*builder.Services.AddDbContext<DatabaseContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DatabaseConnection"))
-);
-builder.Services.AddScoped<CryptoWalletService>();
-builder.Services.AddScoped<TransactionService>();
-builder.Services.AddScoped<WalletService>();
-builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddControllers();*/
+);*/
+
+//builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+builder.Services.AddControllers();
 builder.Services.AddDbContext<ECommerce_GenericoContext>();
-/*
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddSwaggerGen(options => {
@@ -46,11 +43,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
-builder.Services.AddAuthorization();*/
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
-/*if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
@@ -62,7 +59,7 @@ app.UseAuthentication();
 
 app.UseAuthorization();
 
-app.MapControllers();*/
+app.MapControllers();
 
 app.MapGet("/", () => "Hello World!");
 
